@@ -1,358 +1,725 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nirajan KC — Data Engineer</title>
-    
-    <meta name="description" content="Nirajan KC — Data Engineer specializing in HIPAA-compliant clinical data pipelines and healthcare AI at Rutgers Cancer Institute.">
-    <meta property="og:title" content="Nirajan KC — Data Engineer">
-    <meta property="og:description" content="Building scalable pipelines for clinical research and oncology data.">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    
-    <style>
-        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior:smooth; }
-        body {
-            background:#020617; /* Deeper midnight blue/black */
-            color:#fff;
-            font-family:'Raleway', sans-serif;
-            font-weight:300;
-            font-size:16px;
-            line-height:1.6;
-            overflow-x:hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nirajan KC — Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background:#000;
+  color:#fff;
+  font-family:'Raleway', sans-serif;
+  font-weight:300;
+  font-size:16px;
+  line-height:1.875;
+  overflow-x:hidden;
+}
 
-        /* ── ACCENT COLORS ── */
-        :root {
-            --green: #3dff91;
-            --yellow: #cbdd3d;
-            --orange: #e09347;
-            --border: rgba(255,255,255,0.1);
-            --card-bg: rgba(15, 23, 42, 0.8);
-        }
+/* ── PARTICLES ── */
+#particles-js {
+  position:fixed; top:0; left:0;
+  width:100%; height:100%;
+  z-index:0; pointer-events:none;
+}
 
-        #particles-js {
-            position:fixed; top:0; left:0; width:100%; height:100%;
-            z-index:0; pointer-events:none;
-        }
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0;
+  z-index:1000; transition:background 0.3s;
+}
+nav.scrolled { background:rgba(0,0,0,0.92); backdrop-filter:blur(8px); }
+.nav-inner {
+  width:100%; max-width:1300px; margin:0 auto;
+  display:flex; align-items:center; justify-content:center;
+  padding:20px 40px;
+}
+.nav-left, .nav-right {
+  display:flex; align-items:center; gap:32px; flex:1;
+}
+.nav-right { justify-content:flex-end; }
+.nav-center { display:flex; align-items:center; gap:10px; padding:0 36px; }
+.nav-star { color:#f0c040; font-size:15px; }
+nav a {
+  color:#fff; text-decoration:none;
+  font-family:'Raleway', sans-serif;
+  font-size:13px; font-weight:700; letter-spacing:1.5px;
+  transition:color 0.2s;
+}
+nav a:hover { color:#cbdd3d; }
+.nav-icon-link {
+  display:flex; align-items:center; justify-content:center;
+  width:36px; height:36px;
+  border:1.5px solid rgba(255,255,255,0.45);
+  border-radius:7px; color:#fff; text-decoration:none;
+  font-size:11px; font-weight:900; transition:all 0.2s;
+}
+.nav-icon-link:hover { border-color:#cbdd3d; color:#cbdd3d; }
+.nav-icon-link svg { width:17px; height:17px; fill:currentColor; }
 
-        /* ── NAV ── */
-        nav {
-            position:fixed; top:0; left:0; right:0;
-            z-index:1000; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 15px 0;
-        }
-        nav.scrolled { 
-            background:rgba(2, 6, 23, 0.85); 
-            backdrop-filter:blur(12px); 
-            border-bottom: 1px solid var(--border);
-            padding: 10px 0;
-        }
-        .nav-inner {
-            width:100%; max-width:1300px; margin:0 auto;
-            display:flex; align-items:center; justify-content:space-between;
-            padding:0 40px;
-        }
-        .nav-links { display:flex; gap:30px; align-items:center; }
-        nav a {
-            color: rgba(255,255,255,0.7); text-decoration:none;
-            font-size:12px; font-weight:700; letter-spacing:1.5px;
-            transition: color 0.3s;
-        }
-        nav a:hover { color: var(--green); }
-        .nav-icon-link svg { width:18px; height:18px; fill:currentColor; vertical-align: middle; }
+/* ── HERO ── */
+#hero {
+  position:relative; z-index:1;
+  min-height:100vh; display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center; padding:120px 40px 80px;
+}
+.hero-name {
+  font-size:80px; font-weight:900; color:#fff;
+  line-height:1.05; margin-bottom:36px;
+  font-family:'Raleway', sans-serif; letter-spacing:-1px;
+}
+.hero-sub1 {
+  font-size:26px; font-weight:400; line-height:1.7;
+  color:#fff; max-width:800px; margin-bottom:24px;
+}
+.hero-sub2 {
+  font-size:21px; font-weight:400; color:#fff;
+  max-width:700px; margin-bottom:50px; line-height:1.7;
+}
+.hl-green  { color:#3dff91; }
+.hl-yellow { color:#cbdd3d; }
+.hl-orange { color:#e09347; }
+.explore-btn {
+  display:inline-flex; align-items:center; gap:10px;
+  border:1px solid rgba(255,255,255,0.25); color:#fff;
+  padding:11px 30px; border-radius:9999px;
+  font-family:'Raleway', sans-serif; font-size:13px;
+  font-weight:600; letter-spacing:1.2px; text-decoration:none;
+  text-transform:uppercase; transition:all 0.25s;
+}
+.explore-btn:hover { border-color:#3dff91; color:#3dff91; }
+.explore-btn svg { width:14px; height:14px; fill:currentColor; }
 
-        /* ── HERO ── */
-        #hero {
-            position:relative; z-index:1;
-            min-height:90vh; display:flex; flex-direction:column;
-            align-items:center; justify-content:center;
-            text-align:center; padding:0 40px;
-        }
-        .hero-name {
-            font-size: clamp(48px, 8vw, 85px); font-weight:900; color:#fff;
-            line-height:1; margin-bottom:15px; letter-spacing:-2px;
-        }
-        .hero-sub1 {
-            font-size: clamp(18px, 3vw, 24px); font-weight:400;
-            color: rgba(255,255,255,0.9); max-width:850px; margin-bottom:10px;
-        }
-        .hl-green { color: var(--green); text-shadow: 0 0 15px rgba(61, 255, 145, 0.3); }
-        .hl-yellow { color: var(--yellow); }
-        
-        .explore-btn {
-            margin-top: 40px;
-            display:inline-flex; align-items:center; gap:12px;
-            background: rgba(255,255,255,0.05);
-            border:1px solid rgba(255,255,255,0.2); color:#fff;
-            padding:14px 35px; border-radius:99px;
-            font-size:12px; font-weight:700; letter-spacing:1.5px;
-            text-decoration:none; text-transform:uppercase; transition:all 0.3s;
-        }
-        .explore-btn:hover { 
-            border-color: var(--green); color: var(--green); 
-            background: rgba(61, 255, 145, 0.05);
-            transform: translateY(-3px);
-        }
+/* ── SECTION ── */
+.section-wrap { position:relative; z-index:1; padding:90px 0 60px; }
+.section-container { max-width:1020px; margin:0 auto; padding:0 40px; }
+.section-title {
+  font-size:33px; font-weight:500; color:#fff;
+  text-align:center; margin-bottom:14px;
+  font-family:'Raleway', sans-serif;
+}
+.section-divider {
+  width:100%; height:1px; border:none;
+  background:rgba(255,255,255,0.15);
+  margin:0 auto 64px; display:block;
+}
 
-        /* ── PIPELINE DIAGRAMS (New) ── */
-        .pipeline-container {
-            display: flex; align-items: center; justify-content: center;
-            gap: 15px; width: 100%; margin-top: 20px;
-        }
-        .pipe-node {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border);
-            padding: 8px 15px; border-radius: 8px;
-            font-size: 11px; font-weight: 600; color: var(--green);
-            white-space: nowrap;
-        }
-        .pipe-arrow { color: rgba(255,255,255,0.3); font-size: 14px; }
+/* ── TIMELINE ── */
+.timeline { position:relative; }
+.tl-item {
+  display:flex; align-items:flex-start;
+  margin-bottom:40px; position:relative;
+}
+.tl-logo-col {
+  flex-shrink:0; width:130px;
+  display:flex; flex-direction:column;
+  align-items:center; position:relative;
+}
+.tl-logo-col::after {
+  content:''; position:absolute;
+  top:115px; bottom:-40px; left:50%;
+  transform:translateX(-50%);
+  width:3px; background:#404040; z-index:0;
+}
+.tl-item:last-child .tl-logo-col::after { display:none; }
+.tl-logo {
+  width:115px; height:115px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Raleway', sans-serif; font-weight:900;
+  font-size:11px; text-align:center; line-height:1.4;
+  border:2px solid rgba(255,255,255,0.12);
+  position:relative; z-index:2; overflow:hidden;
+}
+/* SVG logos fill the circle */
+.tl-logo img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
+/* Text fallback logos */
+.logo-rutgers { background:#cc0033; color:#fff; }
+.logo-cornell  { background:#b31b1b; color:#fff; }
+.logo-nec      { background:#003087; color:#fff; }
+.logo-caldwell { background:#1a3a5c; color:#fff; }
 
-        /* ── SECTION STYLING ── */
-        .section-wrap { position:relative; z-index:1; padding:100px 0; }
-        .section-container { max-width:1100px; margin:0 auto; padding:0 40px; }
-        .section-title { font-size:32px; font-weight:600; text-align:center; margin-bottom:50px; }
-        .section-title span { color: var(--green); }
+.tl-connector-h {
+  width:40px; height:3px; background:#404040;
+  margin-top:56px; flex-shrink:0;
+}
 
-        /* ── EXPERIENCE CARDS (Improved) ── */
-        .tl-card {
-            background: var(--card-bg);
-            border-left:4px solid var(--green);
-            border-radius:12px; padding:30px;
-            margin-bottom: 25px; cursor:pointer;
-            transition: all 0.3s;
-            border: 1px solid var(--border);
-        }
-        .tl-card:hover { 
-            border-color: var(--green);
-            box-shadow: 0 10px 30px -15px rgba(61, 255, 145, 0.2);
-        }
-        .tl-company { font-size:22px; font-weight:600; color: var(--orange); }
-        .tl-role { font-size:16px; color: #cbd5e1; margin-bottom: 10px; }
-        
-        /* ── SKILLS GRID (Glow Effect) ── */
-        .skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-        .skill-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-left:4px solid var(--yellow);
-            padding:25px; border-radius:12px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-        .skill-card:hover {
-            transform: translateY(-5px);
-            border-left-color: var(--green);
-            box-shadow: 0 10px 30px -10px rgba(61, 255, 145, 0.25);
-        }
-        .skill-cat { font-size:14px; font-weight:800; color: var(--yellow); text-transform:uppercase; margin-bottom:10px; }
+/* ── COLLAPSIBLE CARD ── */
+.tl-card {
+  flex:1;
+  background:linear-gradient(160deg, rgba(30,45,35,0.95) 0%, rgb(36,41,36) 30%, rgb(30,34,30) 100%);
+  border-left:6px solid #3dff91;
+  border-radius:12px;
+  padding:28px 36px;
+  box-shadow:
+    rgba(0,0,0,0.4) 0px 4px 24px 0px,
+    rgba(61,255,145,0.2) 0px 0px 0px 1px,
+    rgba(61,255,145,0.1) 0px 1px 0px 0px inset,
+    rgba(61,255,145,0.25) 2px 0px 12px -2px;
+  cursor:pointer;
+  transition:transform 0.2s, box-shadow 0.2s;
+  user-select:none;
+}
+.tl-card:hover { transform:translateY(-2px); }
+.tl-card-header {
+  display:flex; justify-content:space-between;
+  align-items:center; flex-wrap:wrap; gap:8px;
+}
+.tl-header-left { flex:1; }
+.tl-company { font-size:22px; font-weight:500; color:#e09347; line-height:1.3; }
+.tl-role    { font-size:17px; color:#e09347; font-weight:400; margin-top:4px; }
+.tl-chevron {
+  color:#3dff91; font-size:18px; transition:transform 0.3s;
+  flex-shrink:0; margin-left:12px;
+}
+.tl-card.open .tl-chevron { transform:rotate(180deg); }
 
-        /* ── PROJECTS (Improved) ── */
-        .proj-card {
-            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px;
-            background: var(--card-bg); border: 1px solid var(--border);
-            padding: 40px; border-radius: 16px; margin-bottom: 40px;
-        }
-        .proj-name { font-size: 24px; font-weight: 700; margin-bottom: 15px; }
-        .tag {
-            font-size:10px; font-weight:700; color: var(--green);
-            border:1px solid rgba(61,255,145,0.3);
-            padding:4px 12px; border-radius:4px; margin-right: 5px;
-            background:rgba(61,255,145,0.05); text-transform: uppercase;
-        }
+/* collapsible body */
+.tl-body {
+  max-height:0; overflow:hidden;
+  transition:max-height 0.35s cubic-bezier(0.25,0.46,0.45,0.94),
+             opacity 0.25s ease;
+  opacity:0;
+}
+.tl-card.open .tl-body { max-height:800px; opacity:1; }
+.tl-body-inner { padding-top:20px; }
 
-        footer {
-            padding: 40px; text-align: center; font-size: 12px;
-            color: rgba(255,255,255,0.4); border-top: 1px solid var(--border);
-        }
+.tl-meta {
+  display:flex; justify-content:space-between;
+  align-items:center; flex-wrap:wrap; gap:8px;
+  margin-bottom:16px;
+}
+.tl-date { font-size:15px; color:#cbdd3d; font-weight:400; }
+.tl-loc  { font-size:13px; color:rgba(255,255,255,0.45); font-style:italic; }
+.tl-bullets { list-style:none; }
+.tl-bullets li {
+  font-size:14.5px; font-weight:300;
+  color:rgba(255,255,255,0.82);
+  line-height:1.75; padding-left:18px;
+  position:relative; margin-bottom:6px;
+}
+.tl-bullets li::before {
+  content:'▸'; color:#3dff91;
+  position:absolute; left:0; font-size:11px; top:4px;
+}
+.tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+.tag {
+  font-size:11px; font-weight:700; color:#3dff91;
+  border:1px solid rgba(61,255,145,0.35);
+  padding:3px 10px; border-radius:3px;
+  letter-spacing:0.4px; background:rgba(61,255,145,0.05);
+}
 
-        @media (max-width: 900px) {
-            .proj-card { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-            .hero-name { font-size: 50px; }
-        }
-    </style>
+/* ── EDUCATION CARDS ── */
+.edu-item {
+  display:flex; align-items:flex-start;
+  margin-bottom:40px; position:relative;
+}
+.edu-logo-col {
+  flex-shrink:0; width:130px;
+  display:flex; flex-direction:column;
+  align-items:center; position:relative;
+}
+.edu-logo-col::after {
+  content:''; position:absolute;
+  top:115px; bottom:-40px; left:50%;
+  transform:translateX(-50%);
+  width:3px; background:#404040; z-index:0;
+}
+.edu-item:last-child .edu-logo-col::after { display:none; }
+.edu-card {
+  flex:1;
+  background:linear-gradient(160deg, rgba(25,35,50,0.95) 0%, rgb(30,36,50) 30%, rgb(24,30,44) 100%);
+  border-left:6px solid #cbdd3d;
+  border-radius:12px; padding:28px 36px;
+  box-shadow:
+    rgba(0,0,0,0.4) 0px 4px 24px 0px,
+    rgba(203,221,61,0.2) 0px 0px 0px 1px,
+    rgba(203,221,61,0.1) 0px 1px 0px 0px inset;
+  transition:transform 0.2s;
+}
+.edu-card:hover { transform:translateY(-2px); }
+.edu-school { font-size:22px; font-weight:500; color:#cbdd3d; line-height:1.3; }
+.edu-degree { font-size:17px; color:#e09347; font-weight:400; margin:6px 0 4px; }
+.edu-meta   { font-size:13px; color:rgba(255,255,255,0.45); font-style:italic; }
+
+/* ── PROJECTS ── */
+.proj-item {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:44px; align-items:center; margin-bottom:64px;
+}
+.proj-item.rev { direction:rtl; }
+.proj-item.rev > * { direction:ltr; }
+.proj-label { font-size:12px; color:#cbdd3d; letter-spacing:2px; font-weight:700; margin-bottom:8px; text-transform:uppercase; }
+.proj-name  { font-size:26px; font-weight:700; color:#fff; margin-bottom:16px; line-height:1.3; }
+.proj-desc  { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.8; margin-bottom:18px; font-weight:300; }
+.proj-link  { color:#3dff91; font-size:13px; font-weight:600; text-decoration:none; }
+.proj-link:hover { text-decoration:underline; }
+.proj-visual {
+  background:linear-gradient(160deg, rgba(30,45,35,0.95) 0%, rgb(36,41,36) 30%, rgb(30,34,30) 100%);
+  border-left:6px solid #3dff91; border-radius:12px;
+  padding:32px; min-height:190px;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center; gap:6px;
+  font-size:13px; color:#3dff91; font-weight:400; line-height:1.9;
+  box-shadow:rgba(0,0,0,0.4) 0px 4px 24px, rgba(61,255,145,0.2) 0px 0px 0px 1px;
+}
+
+/* ── SKILLS ── */
+.skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+.skill-card {
+  background:linear-gradient(160deg, rgba(30,45,35,0.95) 0%, rgb(36,41,36) 30%, rgb(30,34,30) 100%);
+  border-left:5px solid #cbdd3d; border-radius:10px;
+  padding:24px 28px; box-shadow:rgba(0,0,0,0.3) 0px 4px 18px;
+  transition:transform 0.2s;
+}
+.skill-card:hover { transform:translateY(-2px); }
+.skill-cat   { font-size:14px; font-weight:700; color:#cbdd3d; margin-bottom:10px; }
+.skill-items { font-size:13px; color:rgba(255,255,255,0.7); line-height:1.85; font-weight:300; }
+
+/* ── PUBLICATIONS ── */
+.pub-item {
+  border-left:5px solid #e09347; padding:22px 30px;
+  margin-bottom:28px;
+  background:linear-gradient(160deg, rgba(40,35,25,0.95) 0%, rgb(41,38,30) 30%, rgb(34,32,25) 100%);
+  border-radius:0 10px 10px 0; box-shadow:rgba(0,0,0,0.3) 0px 4px 16px;
+}
+.pub-title   { font-size:16px; font-weight:600; color:#fff; margin-bottom:8px; line-height:1.55; }
+.pub-authors { font-size:13px; color:rgba(255,255,255,0.5); line-height:1.6; font-weight:300; }
+
+/* ── CONTACT ── */
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:start; }
+.contact-box {
+  background:linear-gradient(160deg, rgba(30,45,35,0.95) 0%, rgb(36,41,36) 30%, rgb(30,34,30) 100%);
+  border-left:6px solid #3dff91; border-radius:12px; padding:38px 42px;
+  box-shadow:rgba(0,0,0,0.4) 0px 4px 24px, rgba(61,255,145,0.2) 0px 0px 0px 1px;
+}
+.contact-box p { font-size:15px; color:rgba(255,255,255,0.72); line-height:1.85; font-weight:300; margin-bottom:28px; }
+.hello-btn {
+  display:inline-block; border:1px solid #3dff91; color:#3dff91;
+  padding:10px 30px; border-radius:9999px; text-decoration:none;
+  font-size:13px; font-weight:700; letter-spacing:1.2px;
+  text-transform:uppercase; transition:all 0.2s;
+}
+.hello-btn:hover { background:rgba(61,255,145,0.1); }
+.ci-label {
+  font-size:11px; color:rgba(255,255,255,0.38);
+  letter-spacing:2px; text-transform:uppercase;
+  font-weight:700; margin-bottom:6px; margin-top:26px;
+}
+.ci-label:first-child { margin-top:0; }
+.ci-val  { font-size:15px; color:#fff; font-weight:400; }
+.ci-text { font-size:13px; color:rgba(255,255,255,0.6); line-height:1.9; font-weight:300; }
+.soc-row { display:flex; gap:10px; flex-wrap:wrap; margin-top:6px; }
+.soc-btn {
+  border:1px solid rgba(255,255,255,0.2); color:#fff;
+  padding:7px 17px; border-radius:6px; text-decoration:none;
+  font-size:13px; font-weight:500; transition:all 0.2s;
+}
+.soc-btn:hover { border-color:#3dff91; color:#3dff91; }
+
+/* ── FOOTER ── */
+footer {
+  position:relative; z-index:1; text-align:center;
+  padding:32px 20px; font-size:13px;
+  color:rgba(255,255,255,0.28); font-weight:300;
+  border-top:1px solid rgba(255,255,255,0.07); letter-spacing:0.5px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width:900px) {
+  .hero-name { font-size:54px; }
+  .hero-sub1 { font-size:20px; }
+  .hero-sub2 { font-size:17px; }
+  .proj-item, .proj-item.rev { grid-template-columns:1fr; direction:ltr; }
+  .contact-grid { grid-template-columns:1fr; }
+}
+@media (max-width:620px) {
+  .nav-inner { padding:14px 16px; flex-wrap:wrap; gap:12px; }
+  .nav-left, .nav-right { gap:16px; }
+  .tl-logo, .edu-logo-col .tl-logo { width:75px; height:75px; font-size:9px; }
+  .tl-logo-col, .edu-logo-col { width:80px; }
+  .tl-connector-h { width:16px; }
+  .tl-card, .edu-card { padding:22px 18px; }
+  .section-container { padding:0 18px; }
+}
+</style>
 </head>
 <body>
 
 <div id="particles-js"></div>
 
+<!-- ══ NAV ══ -->
 <nav id="main-nav">
-    <div class="nav-inner">
-        <div class="nav-links">
-            <a href="#work">EXPERIENCE</a>
-            <a href="#projects">PROJECTS</a>
-        </div>
-        
-        <div style="display:flex; gap:15px;">
-            <a href="https://github.com/nirajanck" class="nav-icon-link" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 6.1 18 6.4 18 6.4c.7 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.2.9 2.3v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"/></svg>
-            </a>
-            <a href="https://linkedin.com/in/nirajankc" class="nav-icon-link" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.25 2.36 4.25 5.42v6.32zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-            </a>
-        </div>
-
-        <div class="nav-links">
-            <a href="#skills">TECH STACK</a>
-            <a href="#contact">CONTACT</a>
-        </div>
+  <div class="nav-inner">
+    <div class="nav-left">
+      <span class="nav-star">✦</span>
+      <a href="#work">WORK</a>
+      <a href="#education">EDUCATION</a>
+      <a href="#projects">PROJECTS</a>
     </div>
+    <div class="nav-center">
+      <!-- GitHub -->
+      <a href="https://github.com/nirajanck" class="nav-icon-link" title="GitHub" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 6.1 18 6.4 18 6.4c.7 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.2.9 2.3v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"/></svg>
+      </a>
+      <!-- LinkedIn -->
+      <a href="https://linkedin.com/in/nirajankc" class="nav-icon-link" title="LinkedIn" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.25 2.36 4.25 5.42v6.32zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      </a>
+      <!-- Gmail -->
+      <a href="mailto:nirajankc001@gmail.com" class="nav-icon-link" title="Email" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+    </div>
+    <div class="nav-right">
+      <a href="#skills">SKILLS</a>
+      <a href="#pubs">PUBLICATIONS</a>
+      <a href="#contact">REACH OUT</a>
+      <span class="nav-star">✦</span>
+    </div>
+  </div>
 </nav>
 
+<!-- ══ HERO ══ -->
 <section id="hero">
-    <h1 class="hero-name">Nirajan KC</h1>
-    <p class="hero-sub1">
-        <span class="hl-green">Data Engineer</span> specializing in HIPAA-compliant pipelines at <span class="hl-yellow">Rutgers Cancer Institute</span>.
-    </p>
-    <p style="color: rgba(255,255,255,0.5); font-size: 14px; letter-spacing: 1px;">
-        MS IN DATA SCIENCE @ NEW ENGLAND COLLEGE (2027)
-    </p>
-    <a href="#work" class="explore-btn">
-        View Architecture &nbsp;
-        <svg style="width:14px; fill:currentColor" viewBox="0 0 24 24"><path d="M20 12l-8 8-1.4-1.4L17.2 13H4v-2h13.2l-6.6-6.6L12 3z"/></svg>
-    </a>
+  <h1 class="hero-name">Nirajan KC.</h1>
+  <p class="hero-sub1">
+    <span class="hl-green">Data Engineer</span> with <span class="hl-yellow">4+ years</span>
+    of hands-on experience designing clinical data pipelines at
+    <span class="hl-green">cancer institutes</span> &amp; academic medical centers.
+  </p>
+  <p class="hero-sub2">
+    Currently building HIPAA-compliant data infrastructure at
+    <span class="hl-orange">Rutgers Cancer Institute of New Jersey.</span>
+  </p>
+  <a href="#work" class="explore-btn">
+    Explore My Work &nbsp;
+    <svg viewBox="0 0 24 24"><path d="M20 12l-8 8-1.4-1.4L17.2 13H4v-2h13.2l-6.6-6.6L12 3z"/></svg>
+  </a>
 </section>
 
+<!-- ══ WORK ══ -->
 <div class="section-wrap" id="work">
-    <div class="section-container">
-        <h2 class="section-title">Professional <span>Trajectory</span></h2>
-        
-        <div class="tl-card" onclick="this.classList.toggle('open')">
-            <div class="tl-company">Rutgers Cancer Institute</div>
-            <div class="tl-role">Research Data Engineer / Data Specialist • Nov 2023 – Present</div>
-            <p style="font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 10px;">
-                Designing end-to-end clinical pipelines for multi-modal oncology datasets. Enforcing HIPAA-compliant data lakes and building ML models for biomarker prediction.
-            </p>
-            <div style="margin-top: 15px;">
-                <span class="tag">Python</span> <span class="tag">SQL</span> <span class="tag">AWS</span> <span class="tag">Scikit-Learn</span>
-            </div>
-        </div>
+  <div class="section-container">
+    <h2 class="section-title">Work Experience</h2>
+    <hr class="section-divider">
+    <div class="timeline">
 
-        <div class="tl-card">
-            <div class="tl-company">Weill Cornell Medicine</div>
-            <div class="tl-role">Research Data Technician • 2022 – 2023</div>
-            <p style="font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 10px;">
-                Managed structured collection for drug screening. Validated tumor growth reduction using SQL and biostatistical checks.
-            </p>
-            <div style="margin-top: 15px;">
-                <span class="tag">SQL</span> <span class="tag">SPSS</span> <span class="tag">R</span> <span class="tag">Longitudinal Data</span>
-            </div>
+      <!-- Rutgers -->
+      <div class="tl-item">
+        <div class="tl-logo-col">
+          <!-- Rutgers R logo using SVG -->
+          <div class="tl-logo" style="background:#cc0033; padding:0; overflow:hidden;">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="115" height="115">
+              <rect width="100" height="100" fill="#cc0033"/>
+              <text x="50" y="62" text-anchor="middle" font-family="Georgia,serif" font-size="52" font-weight="900" fill="white">R</text>
+              <text x="50" y="82" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="rgba(255,255,255,0.85)" letter-spacing="1">RUTGERS</text>
+            </svg>
+          </div>
         </div>
+        <div class="tl-connector-h"></div>
+        <div class="tl-card" onclick="toggleCard(this)">
+          <div class="tl-card-header">
+            <div class="tl-header-left">
+              <div class="tl-company">Rutgers Cancer Institute</div>
+              <div class="tl-role">Research Data Engineer / Data Specialist</div>
+            </div>
+            <div class="tl-chevron">▾</div>
+          </div>
+          <div class="tl-body">
+            <div class="tl-body-inner">
+              <div class="tl-meta">
+                <div class="tl-date">Nov 2023 – Present</div>
+                <div class="tl-loc">New Brunswick, NJ</div>
+              </div>
+              <ul class="tl-bullets">
+                <li>Designed and maintained end-to-end clinical data pipelines ingesting multi-modal datasets (plasma, serum, CSF biomarkers) directly supporting active oncology and neurocognitive research studies.</li>
+                <li>Engineered Python- and SQL-based ETL workflows to extract, clean, and integrate complex clinical trial data across multiple modalities, ensuring downstream integrity and full pipeline reproducibility.</li>
+                <li>Built ML pipelines (Logistic Regression, K-fold CV) using Scikit-learn — findings directly informed two peer-reviewed publications in 2025.</li>
+                <li>Developed investigator-facing Power BI and ggplot2 dashboards translating high-dimensional clinical data into actionable insights for Principal Investigators and research teams.</li>
+                <li>Enforced HIPAA-compliant and IRB-approved data handling practices across all pipeline stages; managed PHI/PII with strict access controls and Git-documented audit trails.</li>
+                <li>Conducted rigorous EDA and hypothesis testing on neurocognitive decline metrics from CSF samples, identifying statistically significant biomarker trends in pediatric ALL cohorts.</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Scikit-learn</span>
+                <span class="tag">Power BI</span><span class="tag">R / ggplot2</span><span class="tag">HIPAA</span>
+                <span class="tag">Git</span><span class="tag">Jupyter</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cornell -->
+      <div class="tl-item">
+        <div class="tl-logo-col">
+          <div class="tl-logo" style="background:#b31b1b; padding:0; overflow:hidden;">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="115" height="115">
+              <rect width="100" height="100" fill="#b31b1b"/>
+              <!-- Cornell bear paw simplified -->
+              <text x="50" y="55" text-anchor="middle" font-family="Georgia,serif" font-size="36" font-weight="900" fill="white">WCM</text>
+              <text x="50" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" font-weight="700" fill="rgba(255,255,255,0.85)" letter-spacing="0.5">CORNELL</text>
+            </svg>
+          </div>
+        </div>
+        <div class="tl-connector-h"></div>
+        <div class="tl-card" onclick="toggleCard(this)">
+          <div class="tl-card-header">
+            <div class="tl-header-left">
+              <div class="tl-company">Weill Cornell Medicine</div>
+              <div class="tl-role">Research Data Technician</div>
+            </div>
+            <div class="tl-chevron">▾</div>
+          </div>
+          <div class="tl-body">
+            <div class="tl-body-inner">
+              <div class="tl-meta">
+                <div class="tl-date">Oct 2022 – Sept 2023</div>
+                <div class="tl-loc">New York, NY</div>
+              </div>
+              <ul class="tl-bullets">
+                <li>Managed structured data collection and pipeline preparation for high-throughput drug screening studies, producing clean schema-consistent datasets for downstream statistical analysis.</li>
+                <li>Validated experimental datasets using SQL and Excel, identifying compounds with statistically significant tumor growth reduction.</li>
+                <li>Maintained accurate longitudinal data logs for in vivo radiation response studies; applied statistical checks and data standardization aligned with clinical-grade standards.</li>
+                <li>Collaborated with research teams to translate complex biological datasets into structured formats for review by principal investigators and biostatisticians.</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">SQL</span><span class="tag">Excel</span><span class="tag">SPSS</span>
+                <span class="tag">R</span><span class="tag">Python</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 </div>
 
-<div class="section-wrap" id="projects" style="background: rgba(255,255,255,0.02);">
-    <div class="section-container">
-        <h2 class="section-title">Data <span>Pipelines</span></h2>
-        
-        <div class="proj-card">
-            <div>
-                <div class="proj-name">Healthcare Claims Pipeline (ELT)</div>
-                <p style="font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 20px;">
-                    Ingesting CMS Medicare claims into Snowflake. Implements a HIPAA-aligned masking layer on AWS Lambda before data reaches the refined analytics zone.
-                </p>
-                <div style="margin-bottom: 20px;">
-                    <span class="tag">Snowflake</span> <span class="tag">dbt</span> <span class="tag">AWS Lambda</span> <span class="tag">S3</span>
-                </div>
-                <a href="#" style="color: var(--green); text-decoration: none; font-weight: 700; font-size: 12px;">EXPLORE REPO ↗</a>
-            </div>
-            <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: center;">
-                <div class="pipeline-container">
-                    <div class="pipe-node">CMS RAW</div>
-                    <div class="pipe-arrow">→</div>
-                    <div class="pipe-node" style="color:var(--orange)">MASKING (AWS)</div>
-                </div>
-                <div class="pipeline-container">
-                    <div class="pipe-arrow">↓</div>
-                </div>
-                <div class="pipeline-container">
-                    <div class="pipe-node">SNOWFLAKE</div>
-                    <div class="pipe-arrow">→</div>
-                    <div class="pipe-node">dbt MODELS</div>
-                </div>
-            </div>
-        </div>
+<!-- ══ EDUCATION ══ -->
+<div class="section-wrap" id="education">
+  <div class="section-container">
+    <h2 class="section-title">Education</h2>
+    <hr class="section-divider">
 
-        <div class="proj-card">
-            <div>
-                <div class="proj-name">Clinical ML Pipeline</div>
-                <p style="font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 20px;">
-                    Predictive modeling for pediatric biomarker outcomes. Built using Scikit-Learn with 10-fold cross-validation and rigorous feature engineering.
-                </p>
-                <div>
-                    <span class="tag">Python</span> <span class="tag">Scikit-Learn</span> <span class="tag">EDA</span> <span class="tag">Clinical Research</span>
-                </div>
-            </div>
-            <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: center;">
-                <div class="pipeline-container">
-                    <div class="pipe-node">BIOMARKER DATA</div>
-                    <div class="pipe-arrow">→</div>
-                    <div class="pipe-node">ML CLEANING</div>
-                </div>
-                <div class="pipeline-container">
-                    <div class="pipe-arrow">↓</div>
-                </div>
-                <div class="pipeline-container">
-                    <div class="pipe-node">SCIKIT-LEARN</div>
-                    <div class="pipe-arrow">→</div>
-                    <div class="pipe-node" style="color:var(--yellow)">PREDICTION</div>
-                </div>
-            </div>
+    <div style="position:relative;">
+
+      <!-- NEC -->
+      <div class="edu-item">
+        <div class="edu-logo-col">
+          <div class="tl-logo" style="background:#003087; padding:0; overflow:hidden;">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="115" height="115">
+              <rect width="100" height="100" fill="#003087"/>
+              <text x="50" y="50" text-anchor="middle" font-family="Georgia,serif" font-size="28" font-weight="900" fill="white">NEC</text>
+              <text x="50" y="68" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" font-weight="600" fill="rgba(255,255,255,0.8)" letter-spacing="0.3">NEW ENGLAND</text>
+              <text x="50" y="80" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" font-weight="600" fill="rgba(255,255,255,0.8)" letter-spacing="0.3">COLLEGE</text>
+            </svg>
+          </div>
+          <!-- vertical connector -->
+          <div style="width:3px;background:#404040;flex:1;margin-top:0;min-height:40px;"></div>
         </div>
+        <div class="tl-connector-h"></div>
+        <div class="edu-card">
+          <div class="edu-school">New England College</div>
+          <div class="edu-degree">M.S., Data Science</div>
+          <div class="edu-meta">Fall 2025 – Mar 2027 &nbsp;·&nbsp; GPA: 4.0 &nbsp;·&nbsp; Henniker, NH</div>
+          <div style="margin-top:12px;font-size:13.5px;color:rgba(255,255,255,0.65);font-weight:300;line-height:1.7;">
+            Focus: ML pipelines, predictive modeling, healthcare analytics, statistical inference
+          </div>
+        </div>
+      </div>
+
+      <!-- Caldwell -->
+      <div class="edu-item">
+        <div class="edu-logo-col">
+          <div class="tl-logo" style="background:#1a3a5c; padding:0; overflow:hidden;">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="115" height="115">
+              <rect width="100" height="100" fill="#1a3a5c"/>
+              <text x="50" y="50" text-anchor="middle" font-family="Georgia,serif" font-size="28" font-weight="900" fill="white" dy="0">CU</text>
+              <text x="50" y="68" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" font-weight="600" fill="rgba(255,255,255,0.8)" letter-spacing="0.3">CALDWELL</text>
+              <text x="50" y="80" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" font-weight="600" fill="rgba(255,255,255,0.8)" letter-spacing="0.3">UNIVERSITY</text>
+            </svg>
+          </div>
+        </div>
+        <div class="tl-connector-h"></div>
+        <div class="edu-card">
+          <div class="edu-school">Caldwell University</div>
+          <div class="edu-degree">B.S., Biology (Honors)</div>
+          <div class="edu-meta">Jan 2019 – Dec 2022 &nbsp;·&nbsp; GPA: 3.76 &nbsp;·&nbsp; Caldwell, NJ</div>
+          <div style="margin-top:12px;font-size:13.5px;color:rgba(255,255,255,0.65);font-weight:300;line-height:1.7;">
+            Foundation in clinical research methodology, biomedical data interpretation, and laboratory data management. Independent research on colorectal cancer cell inhibition.
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 </div>
 
+<!-- ══ PROJECTS ══ -->
+<div class="section-wrap" id="projects">
+  <div class="section-container">
+    <h2 class="section-title">Portfolio Projects</h2>
+    <hr class="section-divider">
+
+    <div class="proj-item">
+      <div>
+        <div class="proj-label">Featured Project</div>
+        <h3 class="proj-name">Healthcare Claims Pipeline</h3>
+        <p class="proj-desc">End-to-end ELT pipeline ingesting CMS public Medicare claims data into Snowflake using Python and dbt, with a HIPAA-aligned PHI masking layer on AWS. Designed for auditability, reproducibility, and production-grade data governance.</p>
+        <div class="tags" style="margin-bottom:18px">
+          <span class="tag">Python</span><span class="tag">dbt</span><span class="tag">Snowflake</span>
+          <span class="tag">AWS S3 / Lambda</span><span class="tag">HIPAA</span>
+        </div>
+        <a href="https://github.com/nirajanck" class="proj-link" target="_blank">↗ &nbsp;GitHub (in progress)</a>
+      </div>
+      <div class="proj-visual">
+        CMS Medicare Claims<br>↓<br>
+        Python + dbt<br>↓<br>
+        PHI Masking (AWS Lambda)<br>↓<br>
+        Snowflake Analytics Layer
+      </div>
+    </div>
+
+    <div class="proj-item rev">
+      <div>
+        <div class="proj-label">Featured Project</div>
+        <h3 class="proj-name">Clinical ML Pipeline</h3>
+        <p class="proj-desc">Reproducible Scikit-learn pipeline for CSF biomarker-based outcome prediction in pediatric ALL patients. Fully version-controlled via Git with documented data lineage. Results contributed to two peer-reviewed publications in 2025.</p>
+        <div class="tags" style="margin-bottom:18px">
+          <span class="tag">Python</span><span class="tag">Scikit-learn</span>
+          <span class="tag">K-fold CV</span><span class="tag">Git</span><span class="tag">Jupyter</span>
+        </div>
+        <a href="https://github.com/nirajanck" class="proj-link" target="_blank">↗ &nbsp;GitHub</a>
+      </div>
+      <div class="proj-visual">
+        CSF Biomarker Data<br>↓<br>
+        Feature Engineering<br>↓<br>
+        Logistic Regression + K-fold CV<br>↓<br>
+        Outcome Prediction (Pediatric ALL)
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ SKILLS ══ -->
 <div class="section-wrap" id="skills">
-    <div class="section-container">
-        <h2 class="section-title">Technical <span>Stack</span></h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-cat">Engineering</div>
-                <div class="skill-items">ETL/ELT, Data Modeling, Medallion Architecture, dbt, Spark, Kafka</div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-cat">Cloud & DB</div>
-                <div class="skill-items">AWS (Glue, Redshift), Snowflake, Azure Synapse, PostgreSQL, MongoDB</div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-cat">Languages & AI</div>
-                <div class="skill-items">Python (Pandas, Scikit-learn), R (ggplot2), SQL (Window Functions), NLP</div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-cat">Healthcare</div>
-                <div class="skill-items">HIPAA Compliance, PHI Masking, HL7/FHIR, Clinical Trial Protocols</div>
-            </div>
-        </div>
+  <div class="section-container">
+    <h2 class="section-title">Technical Skills</h2>
+    <hr class="section-divider">
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-cat">Programming &amp; Scripting</div><div class="skill-items">Python (Pandas, NumPy, Scikit-learn), SQL (CTEs, Window Functions), R (ggplot2), Shell Scripting</div></div>
+      <div class="skill-card"><div class="skill-cat">Data Engineering</div><div class="skill-items">ETL/ELT Pipeline Design, Data Modeling, Data Ingestion, Schema Design, Data Quality Frameworks, EDA</div></div>
+      <div class="skill-card"><div class="skill-cat">Cloud Platforms</div><div class="skill-items">AWS (S3, Glue, Redshift, Lambda, Athena, IAM) · Azure (ADF, ADLS Gen2, Synapse Analytics)</div></div>
+      <div class="skill-card"><div class="skill-cat">Databases &amp; Warehousing</div><div class="skill-items">Snowflake, Redshift, Azure Synapse, PostgreSQL, MySQL</div></div>
+      <div class="skill-card"><div class="skill-cat">Big Data &amp; Processing</div><div class="skill-items">Apache Spark, PySpark, Spark SQL, Databricks, dbt (learning), Kafka / Streaming (learning)</div></div>
+      <div class="skill-card"><div class="skill-cat">Healthcare Domain</div><div class="skill-items">HIPAA/HITECH, PHI/PII handling, IRB-compliant workflows, EHR, HL7/FHIR, ICD-10/CPT, Clinical Trials</div></div>
+      <div class="skill-card"><div class="skill-cat">Visualization &amp; BI</div><div class="skill-items">Power BI, Tableau, Matplotlib, Seaborn — stakeholder-facing clinical dashboards</div></div>
+      <div class="skill-card"><div class="skill-cat">ML &amp; Statistics</div><div class="skill-items">Logistic Regression, K-fold CV, Hypothesis Testing, A/B Testing, Feature Engineering, Scikit-learn</div></div>
     </div>
+  </div>
 </div>
 
-<footer id="contact">
-    <p>NIRAJAN KC // DATA ENGINEER // NEWARK, NJ</p>
-    <p style="margin-top: 10px;">NIRAJANKC001@GMAIL.COM</p>
-</footer>
+<!-- ══ PUBLICATIONS ══ -->
+<div class="section-wrap" id="pubs">
+  <div class="section-container">
+    <h2 class="section-title">Publications</h2>
+    <hr class="section-divider">
+    <div class="pub-item">
+      <div class="pub-title">CSF Metabolomic Signature During Therapy for Childhood Acute Lymphoblastic Leukemia Predicts Subsequent Working Memory Impairment</div>
+      <div class="pub-authors">Willekens J., Ramjan S., Sands S.A., Park Y., KC N., Burns M.A., Welch J.J.G., Kahn J., Kelly K.M., Tran T.-H., Michon B., Gennarini L., Place A., Silverman L.B., Cole P.D. &mdash; 2025</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-title">Treatment-related Changes in Cerebrospinal Fluid Markers of Oxidative Stress and Neurodegeneration During Therapy for Childhood Acute Lymphoblastic Leukemia</div>
+      <div class="pub-authors">Cole P.D., Park Y., KC N., Ramjan S., et al. &mdash; 2025</div>
+    </div>
+  </div>
+</div>
 
+<!-- ══ CONTACT ══ -->
+<div class="section-wrap" id="contact">
+  <div class="section-container">
+    <h2 class="section-title">Reach Out.</h2>
+    <hr class="section-divider">
+    <div class="contact-grid">
+      <div class="contact-box">
+        <p>Open to Data Engineer roles at hospital systems, payers, and health tech companies. Collaborations, opportunities, or just saying hi — I'd love to hear from you.</p>
+        <a href="mailto:nirajankc001@gmail.com" class="hello-btn">Say Hello</a>
+      </div>
+      <div>
+        <div class="ci-label">Email</div>
+        <div class="ci-val">nirajankc001@gmail.com</div>
+        <div class="ci-label">Socials</div>
+        <div class="soc-row">
+          <a href="https://github.com/nirajanck" class="soc-btn" target="_blank">GitHub</a>
+          <a href="https://linkedin.com/in/nirajankc" class="soc-btn" target="_blank">LinkedIn</a>
+        </div>
+        <div class="ci-label">Education</div>
+        <div class="ci-text">
+          M.S. Data Science — New England College (4.0 GPA)<br>
+          B.S. Biology (Honors) — Caldwell University (3.76 GPA)
+        </div>
+        <div class="ci-label">Certifications</div>
+        <div class="ci-text">
+          AWS Certified Data Engineer – Associate (in progress)<br>
+          Microsoft Azure DP-900 (in progress)<br>
+          Google Data Analytics – Coursera<br>
+          IBM Data Science – Coursera
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>Designed &amp; Built by Nirajan KC &nbsp;·&nbsp; 2025</footer>
+
+<!-- PARTICLES -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-    particlesJS('particles-js', {
-        particles: {
-            number: { value: 60 },
-            color: { value: '#ffffff' },
-            opacity: { value: 0.2 },
-            size: { value: 2 },
-            line_linked: { enable: true, distance: 150, color: '#ffffff', opacity: 0.1, width: 1 },
-            move: { enable: true, speed: 1.5 }
-        },
-        interactivity: { events: { onhover: { enable: true, mode: 'repulse' } } }
-    });
+particlesJS('particles-js', {
+  particles: {
+    number: { value: 80, density: { enable: true, value_area: 800 } },
+    color: { value: '#ffffff' },
+    shape: { type: 'circle', stroke: { width: 0, color: '#000000' } },
+    opacity: { value: 0.4, random: false, anim: { enable: false } },
+    size: { value: 2, random: true, anim: { enable: false } },
+    line_linked: { enable: true, distance: 150, color: '#ffffff', opacity: 0.3, width: 1 },
+    move: { enable: true, speed: 2, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false }
+  },
+  interactivity: {
+    detect_on: 'window',
+    events: {
+      onhover: { enable: true, mode: 'repulse' },
+      onclick: { enable: true, mode: 'push' },
+      resize: true
+    },
+    modes: {
+      repulse: { distance: 100, duration: 0.4 },
+      push: { particles_nb: 4 }
+    }
+  },
+  retina_detect: true
+});
 
-    window.addEventListener('scroll', () => {
-        document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 50);
-    });
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Collapsible cards
+function toggleCard(card) {
+  const isOpen = card.classList.contains('open');
+  // close all
+  document.querySelectorAll('.tl-card.open').forEach(c => c.classList.remove('open'));
+  // open clicked if it wasn't open
+  if (!isOpen) card.classList.add('open');
+}
 </script>
-
 </body>
 </html>
