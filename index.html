@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nirajan KC — Data Engineer</title>
+    
+    <meta name="description" content="Nirajan KC — Data Engineer specializing in HIPAA-compliant clinical data pipelines and healthcare AI at Rutgers Cancer Institute.">
+    <meta property="og:title" content="Nirajan KC — Data Engineer">
+    <meta property="og:description" content="Building scalable pipelines for clinical research and oncology data.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body {
+            background:#020617; /* Deeper midnight blue/black */
+            color:#fff;
+            font-family:'Raleway', sans-serif;
+            font-weight:300;
+            font-size:16px;
+            line-height:1.6;
+            overflow-x:hidden;
+        }
+
+        /* ── ACCENT COLORS ── */
+        :root {
+            --green: #3dff91;
+            --yellow: #cbdd3d;
+            --orange: #e09347;
+            --border: rgba(255,255,255,0.1);
+            --card-bg: rgba(15, 23, 42, 0.8);
+        }
+
+        #particles-js {
+            position:fixed; top:0; left:0; width:100%; height:100%;
+            z-index:0; pointer-events:none;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position:fixed; top:0; left:0; right:0;
+            z-index:1000; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 15px 0;
+        }
+        nav.scrolled { 
+            background:rgba(2, 6, 23, 0.85); 
+            backdrop-filter:blur(12px); 
+            border-bottom: 1px solid var(--border);
+            padding: 10px 0;
+        }
+        .nav-inner {
+            width:100%; max-width:1300px; margin:0 auto;
+            display:flex; align-items:center; justify-content:space-between;
+            padding:0 40px;
+        }
+        .nav-links { display:flex; gap:30px; align-items:center; }
+        nav a {
+            color: rgba(255,255,255,0.7); text-decoration:none;
+            font-size:12px; font-weight:700; letter-spacing:1.5px;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: var(--green); }
+        .nav-icon-link svg { width:18px; height:18px; fill:currentColor; vertical-align: middle; }
+
+        /* ── HERO ── */
+        #hero {
+            position:relative; z-index:1;
+            min-height:90vh; display:flex; flex-direction:column;
+            align-items:center; justify-content:center;
+            text-align:center; padding:0 40px;
+        }
+        .hero-name {
+            font-size: clamp(48px, 8vw, 85px); font-weight:900; color:#fff;
+            line-height:1; margin-bottom:15px; letter-spacing:-2px;
+        }
+        .hero-sub1 {
+            font-size: clamp(18px, 3vw, 24px); font-weight:400;
+            color: rgba(255,255,255,0.9); max-width:850px; margin-bottom:10px;
+        }
+        .hl-green { color: var(--green); text-shadow: 0 0 15px rgba(61, 255, 145, 0.3); }
+        .hl-yellow { color: var(--yellow); }
+        
+        .explore-btn {
+            margin-top: 40px;
+            display:inline-flex; align-items:center; gap:12px;
+            background: rgba(255,255,255,0.05);
+            border:1px solid rgba(255,255,255,0.2); color:#fff;
+            padding:14px 35px; border-radius:99px;
+            font-size:12px; font-weight:700; letter-spacing:1.5px;
+            text-decoration:none; text-transform:uppercase; transition:all 0.3s;
+        }
+        .explore-btn:hover { 
+            border-color: var(--green); color: var(--green); 
+            background: rgba(61, 255, 145, 0.05);
+            transform: translateY(-3px);
+        }
+
+        /* ── PIPELINE DIAGRAMS (New) ── */
+        .pipeline-container {
+            display: flex; align-items: center; justify-content: center;
+            gap: 15px; width: 100%; margin-top: 20px;
+        }
+        .pipe-node {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            padding: 8px 15px; border-radius: 8px;
+            font-size: 11px; font-weight: 600; color: var(--green);
+            white-space: nowrap;
+        }
+        .pipe-arrow { color: rgba(255,255,255,0.3); font-size: 14px; }
+
+        /* ── SECTION STYLING ── */
+        .section-wrap { position:relative; z-index:1; padding:100px 0; }
+        .section-container { max-width:1100px; margin:0 auto; padding:0 40px; }
+        .section-title { font-size:32px; font-weight:600; text-align:center; margin-bottom:50px; }
+        .section-title span { color: var(--green); }
+
+        /* ── EXPERIENCE CARDS (Improved) ── */
+        .tl-card {
+            background: var(--card-bg);
+            border-left:4px solid var(--green);
+            border-radius:12px; padding:30px;
+            margin-bottom: 25px; cursor:pointer;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+        }
+        .tl-card:hover { 
+            border-color: var(--green);
+            box-shadow: 0 10px 30px -15px rgba(61, 255, 145, 0.2);
+        }
+        .tl-company { font-size:22px; font-weight:600; color: var(--orange); }
+        .tl-role { font-size:16px; color: #cbd5e1; margin-bottom: 10px; }
+        
+        /* ── SKILLS GRID (Glow Effect) ── */
+        .skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+        .skill-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-left:4px solid var(--yellow);
+            padding:25px; border-radius:12px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-left-color: var(--green);
+            box-shadow: 0 10px 30px -10px rgba(61, 255, 145, 0.25);
+        }
+        .skill-cat { font-size:14px; font-weight:800; color: var(--yellow); text-transform:uppercase; margin-bottom:10px; }
+
+        /* ── PROJECTS (Improved) ── */
+        .proj-card {
+            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px;
+            background: var(--card-bg); border: 1px solid var(--border);
+            padding: 40px; border-radius: 16px; margin-bottom: 40px;
+        }
+        .proj-name { font-size: 24px; font-weight: 700; margin-bottom: 15px; }
+        .tag {
+            font-size:10px; font-weight:700; color: var(--green);
+            border:1px solid rgba(61,255,145,0.3);
+            padding:4px 12px; border-radius:4px; margin-right: 5px;
+            background:rgba(61,255,145,0.05); text-transform: uppercase;
+        }
+
+        footer {
+            padding: 40px; text-align: center; font-size: 12px;
+            color: rgba(255,255,255,0.4); border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 900px) {
+            .proj-card { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero-name { font-size: 50px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="particles-js"></div>
+
+<nav id="main-nav">
+    <div class="nav-inner">
+        <div class="nav-links">
+            <a href="#work">EXPERIENCE</a>
+            <a href="#projects">PROJECTS</a>
+        </div>
+        
+        <div style="display:flex; gap:15px;">
+            <a href="https://github.com/nirajanck" class="nav-icon-link" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 6.1 18 6.4 18 6.4c.7 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.2.9 2.3v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/nirajankc" class="nav-icon-link" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.25 2.36 4.25 5.42v6.32zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </a>
+        </div>
+
+        <div class="nav-links">
+            <a href="#skills">TECH STACK</a>
+            <a href="#contact">CONTACT</a>
+        </div>
+    </div>
+</nav>
+
+<section id="hero">
+    <h1 class="hero-name">Nirajan KC</h1>
+    <p class="hero-sub1">
+        <span class="hl-green">Data Engineer</span> specializing in HIPAA-compliant pipelines at <span class="hl-yellow">Rutgers Cancer Institute</span>.
+    </p>
+    <p style="color: rgba(255,255,255,0.5); font-size: 14px; letter-spacing: 1px;">
+        MS IN DATA SCIENCE @ NEW ENGLAND COLLEGE (2027)
+    </p>
+    <a href="#work" class="explore-btn">
+        View Architecture &nbsp;
+        <svg style="width:14px; fill:currentColor" viewBox="0 0 24 24"><path d="M20 12l-8 8-1.4-1.4L17.2 13H4v-2h13.2l-6.6-6.6L12 3z"/></svg>
+    </a>
+</section>
+
+<div class="section-wrap" id="work">
+    <div class="section-container">
+        <h2 class="section-title">Professional <span>Trajectory</span></h2>
+        
+        <div class="tl-card" onclick="this.classList.toggle('open')">
+            <div class="tl-company">Rutgers Cancer Institute</div>
+            <div class="tl-role">Research Data Engineer / Data Specialist • Nov 2023 – Present</div>
+            <p style="font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 10px;">
+                Designing end-to-end clinical pipelines for multi-modal oncology datasets. Enforcing HIPAA-compliant data lakes and building ML models for biomarker prediction.
+            </p>
+            <div style="margin-top: 15px;">
+                <span class="tag">Python</span> <span class="tag">SQL</span> <span class="tag">AWS</span> <span class="tag">Scikit-Learn</span>
+            </div>
+        </div>
+
+        <div class="tl-card">
+            <div class="tl-company">Weill Cornell Medicine</div>
+            <div class="tl-role">Research Data Technician • 2022 – 2023</div>
+            <p style="font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 10px;">
+                Managed structured collection for drug screening. Validated tumor growth reduction using SQL and biostatistical checks.
+            </p>
+            <div style="margin-top: 15px;">
+                <span class="tag">SQL</span> <span class="tag">SPSS</span> <span class="tag">R</span> <span class="tag">Longitudinal Data</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section-wrap" id="projects" style="background: rgba(255,255,255,0.02);">
+    <div class="section-container">
+        <h2 class="section-title">Data <span>Pipelines</span></h2>
+        
+        <div class="proj-card">
+            <div>
+                <div class="proj-name">Healthcare Claims Pipeline (ELT)</div>
+                <p style="font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 20px;">
+                    Ingesting CMS Medicare claims into Snowflake. Implements a HIPAA-aligned masking layer on AWS Lambda before data reaches the refined analytics zone.
+                </p>
+                <div style="margin-bottom: 20px;">
+                    <span class="tag">Snowflake</span> <span class="tag">dbt</span> <span class="tag">AWS Lambda</span> <span class="tag">S3</span>
+                </div>
+                <a href="#" style="color: var(--green); text-decoration: none; font-weight: 700; font-size: 12px;">EXPLORE REPO ↗</a>
+            </div>
+            <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: center;">
+                <div class="pipeline-container">
+                    <div class="pipe-node">CMS RAW</div>
+                    <div class="pipe-arrow">→</div>
+                    <div class="pipe-node" style="color:var(--orange)">MASKING (AWS)</div>
+                </div>
+                <div class="pipeline-container">
+                    <div class="pipe-arrow">↓</div>
+                </div>
+                <div class="pipeline-container">
+                    <div class="pipe-node">SNOWFLAKE</div>
+                    <div class="pipe-arrow">→</div>
+                    <div class="pipe-node">dbt MODELS</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="proj-card">
+            <div>
+                <div class="proj-name">Clinical ML Pipeline</div>
+                <p style="font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 20px;">
+                    Predictive modeling for pediatric biomarker outcomes. Built using Scikit-Learn with 10-fold cross-validation and rigorous feature engineering.
+                </p>
+                <div>
+                    <span class="tag">Python</span> <span class="tag">Scikit-Learn</span> <span class="tag">EDA</span> <span class="tag">Clinical Research</span>
+                </div>
+            </div>
+            <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: center;">
+                <div class="pipeline-container">
+                    <div class="pipe-node">BIOMARKER DATA</div>
+                    <div class="pipe-arrow">→</div>
+                    <div class="pipe-node">ML CLEANING</div>
+                </div>
+                <div class="pipeline-container">
+                    <div class="pipe-arrow">↓</div>
+                </div>
+                <div class="pipeline-container">
+                    <div class="pipe-node">SCIKIT-LEARN</div>
+                    <div class="pipe-arrow">→</div>
+                    <div class="pipe-node" style="color:var(--yellow)">PREDICTION</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section-wrap" id="skills">
+    <div class="section-container">
+        <h2 class="section-title">Technical <span>Stack</span></h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-cat">Engineering</div>
+                <div class="skill-items">ETL/ELT, Data Modeling, Medallion Architecture, dbt, Spark, Kafka</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-cat">Cloud & DB</div>
+                <div class="skill-items">AWS (Glue, Redshift), Snowflake, Azure Synapse, PostgreSQL, MongoDB</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-cat">Languages & AI</div>
+                <div class="skill-items">Python (Pandas, Scikit-learn), R (ggplot2), SQL (Window Functions), NLP</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-cat">Healthcare</div>
+                <div class="skill-items">HIPAA Compliance, PHI Masking, HL7/FHIR, Clinical Trial Protocols</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer id="contact">
+    <p>NIRAJAN KC // DATA ENGINEER // NEWARK, NJ</p>
+    <p style="margin-top: 10px;">NIRAJANKC001@GMAIL.COM</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+    particlesJS('particles-js', {
+        particles: {
+            number: { value: 60 },
+            color: { value: '#ffffff' },
+            opacity: { value: 0.2 },
+            size: { value: 2 },
+            line_linked: { enable: true, distance: 150, color: '#ffffff', opacity: 0.1, width: 1 },
+            move: { enable: true, speed: 1.5 }
+        },
+        interactivity: { events: { onhover: { enable: true, mode: 'repulse' } } }
+    });
+
+    window.addEventListener('scroll', () => {
+        document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 50);
+    });
+</script>
+
+</body>
+</html>
